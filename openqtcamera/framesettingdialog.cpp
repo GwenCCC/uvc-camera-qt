@@ -7,6 +7,7 @@ FrameSettingDialog::FrameSettingDialog(QGraphicsVideoItem * videoItem,QMediaReco
     m_videoItem(videoItem),
     ui(new Ui::FrameSettingDialog)
 {
+    qDebug("[%s] Start! \n",__FUNCTION__);
     ui->setupUi(this);
     if(m_mediaRecorder)
     {
@@ -33,15 +34,15 @@ FrameSettingDialog::FrameSettingDialog(QGraphicsVideoItem * videoItem,QMediaReco
 
     if(m_videoItem)
     {
-        ui->FrameoutCodecCombox->addItem("自适应窗口", 1);
-        ui->FrameoutCodecCombox->addItem("保持输出比例", 2);
+        ui->FrameoutCodecCombox->addItem("自适应窗口", 2);
+        ui->FrameoutCodecCombox->addItem("保持输出比例", 1);
         ui->FrameoutCodecCombox->addItem("保持输出最大并扩展", 3);
         if(m_videoItem->aspectRatioMode()==Qt::IgnoreAspectRatio)
         {
-            ui->FrameoutCodecCombox->setCurrentText("自适应窗口");
-        }
-        else if (m_videoItem->aspectRatioMode()==Qt::KeepAspectRatio) {
             ui->FrameoutCodecCombox->setCurrentText("保持输出比例");
+        }
+        else if (m_videoItem->aspectRatioMode()==Qt::IgnoreAspectRatio) {
+            ui->FrameoutCodecCombox->setCurrentText("自适应窗口");
         }
         else {
             ui->FrameoutCodecCombox->setCurrentText("保持输出最大并扩展");
@@ -52,17 +53,19 @@ FrameSettingDialog::FrameSettingDialog(QGraphicsVideoItem * videoItem,QMediaReco
 
 FrameSettingDialog::~FrameSettingDialog()
 {
+    qDebug("[%s] Start! \n",__FUNCTION__);
     delete ui;
 }
 
 void FrameSettingDialog::on_okBtn_clicked()
 {
+    qDebug("[%s] Start! \n",__FUNCTION__);
     switch (ui->FrameoutCodecCombox->currentData().toInt()) {
     case 1:
-        m_videoItem->setAspectRatioMode(Qt::IgnoreAspectRatio);
+        m_videoItem->setAspectRatioMode(Qt::KeepAspectRatio);
         break;
     case 2:
-        m_videoItem->setAspectRatioMode(Qt::KeepAspectRatio);
+        m_videoItem->setAspectRatioMode(Qt::IgnoreAspectRatio);
         break;
     case 3:
         m_videoItem->setAspectRatioMode(Qt::KeepAspectRatioByExpanding);
@@ -83,5 +86,6 @@ void FrameSettingDialog::on_okBtn_clicked()
 
 void FrameSettingDialog::on_cancelBtn_clicked()
 {
+    qDebug("[%s] Start! \n",__FUNCTION__);
     close();
 }

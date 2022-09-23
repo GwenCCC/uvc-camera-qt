@@ -4,12 +4,12 @@
 #include <QStandardPaths>
 #include <QFileDialog>
 #include <QDebug>
-savePathDialog::savePathDialog(QString &picPath,QString &movPath,QWidget *parent) :
-    QDialog(parent),
-    m_picPath(picPath),
-    m_movPath(movPath),
-    ui(new Ui::savePathDialog)
+savePathDialog::savePathDialog(QString &picPath, QString &movPath, QWidget *parent) : QDialog(parent),
+                                                                                      m_picPath(picPath),
+                                                                                      m_movPath(movPath),
+                                                                                      ui(new Ui::savePathDialog)
 {
+    qDebug("[%s] Start! \n", __FUNCTION__);
     ui->setupUi(this);
 
     ui->picBox->addItem("桌面", 1);
@@ -20,103 +20,108 @@ savePathDialog::savePathDialog(QString &picPath,QString &movPath,QWidget *parent
     ui->movBox->addItem("默认影片路径", 2);
     ui->movBox->addItem("自定义", 3);
 
-
-    m_picPath=QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
-    m_movPath=QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+    m_picPath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+    m_movPath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
 
     ui->picEdit->setText(m_picPath);
     ui->movEdit->setText(m_movPath);
     setWindowTitle("存储路径设置");
-
 }
 
 savePathDialog::~savePathDialog()
 {
+    qDebug("[%s] Start! \n", __FUNCTION__);
     delete ui;
 }
 
 QString savePathDialog::getpicSavePath()
 {
+    qDebug("[%s] Start! \n", __FUNCTION__);
     return m_picPath;
 }
 
 QString savePathDialog::getmovSavePath()
 {
+    qDebug("[%s] Start! \n", __FUNCTION__);
     return m_movPath;
 }
 
 void savePathDialog::on_okBtn_clicked()
 {
+    qDebug("[%s] Start! \n", __FUNCTION__);
     close();
 }
 
 void savePathDialog::on_cancelBtn_clicked()
 {
-    m_picPath=nullptr;
-    m_movPath=nullptr;
+    qDebug("[%s] Start! \n", __FUNCTION__);
+    m_picPath = nullptr;
+    m_movPath = nullptr;
     close();
 }
 
 void savePathDialog::on_picBox_activated(const QString &arg1)
 {
-    switch (ui->picBox->currentData().toInt()) {
+    qDebug("[%s] Start! \n", __FUNCTION__);
+    switch (ui->picBox->currentData().toInt())
+    {
     case 1:
     {
-        m_picPath=QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+        m_picPath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
         ui->picEdit->setText(m_picPath);
     }
-        break;
+    break;
     case 2:
     {
-        m_picPath=QStandardPaths::writableLocation(QStandardPaths::PicturesLocation);
+        m_picPath = QStandardPaths::writableLocation(QStandardPaths::PicturesLocation);
         ui->picEdit->setText(m_picPath);
     }
-        break;
+    break;
     case 3:
     {
         QString file_path = QFileDialog::getExistingDirectory(this, "请选择文件路径...", "./");
-        if(file_path.isEmpty())
+        if (file_path.isEmpty())
         {
             return;
         }
-        m_picPath=file_path;
+        m_picPath = file_path;
         ui->picEdit->setText(m_picPath);
     }
-        break;
+    break;
     default:
         break;
-
     }
 }
 
 void savePathDialog::on_movBox_activated(const QString &arg1)
 {
-    switch (ui->movBox->currentData().toInt()) {
+    qDebug("[%s] Start! \n", __FUNCTION__);
+    switch (ui->movBox->currentData().toInt())
+    {
     case 1:
     {
-        m_movPath=QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+        m_movPath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
         ui->movEdit->setText(m_movPath);
     }
-        break;
+    break;
     case 2:
     {
-        m_movPath=QStandardPaths::writableLocation(QStandardPaths::MoviesLocation);
+        m_movPath = QStandardPaths::writableLocation(QStandardPaths::MoviesLocation);
         ui->movEdit->setText(m_movPath);
     }
-        break;
+    break;
     case 3:
     {
         QString file_path = QFileDialog::getExistingDirectory(this, "请选择文件路径...", "./");
-        if(file_path.isEmpty())
+        if (file_path.isEmpty())
         {
             return;
         }
-        m_movPath=file_path;
+        m_movPath = file_path;
         ui->movEdit->setText(m_movPath);
     }
-        break;
+    break;
     default:
         break;
-
     }
 }
