@@ -199,7 +199,8 @@ void MainWindow::initConnect()
 //            m_pCamera->setCaptureMode(QCamera::CaptureVideo);
 
 //            m_pCamera->unlock();
-//        } });
+//        }
+    });
 }
 
 void MainWindow::resizeEvent(QResizeEvent *event)
