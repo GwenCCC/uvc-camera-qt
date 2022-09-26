@@ -29,7 +29,7 @@ public:
     ~MainWindow();
 
     void initSence();
-    void initCamera(QCameraInfo = QCameraInfo::defaultCamera());
+    void initCamera(QCameraInfo cameraInfo);
     void initTimer();
     void initConnect();
     void resizeMovieWindow();
@@ -55,6 +55,8 @@ private slots:
     void ProcessVideoFrame(QVideoFrame frame);
 
     void checkDeviceListInfo();
+
+    void on_CameraChooseCombox_activated(int index);
 
 
 private:

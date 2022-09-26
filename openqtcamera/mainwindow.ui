@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>605</width>
-    <height>444</height>
+    <width>878</width>
+    <height>657</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,7 +15,7 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout_3" rowstretch="1,0">
-    <item row="0" column="0">
+    <item row="0" column="0" colspan="2">
      <layout class="QGridLayout" name="gridLayout">
       <item row="0" column="0">
        <widget class="QGraphicsView" name="graphicsView"/>
@@ -23,6 +23,13 @@
      </layout>
     </item>
     <item row="1" column="0">
+     <widget class="QComboBox" name="CameraChooseCombox">
+      <property name="currentText">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
        <number>0</number>
@@ -145,8 +152,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>605</width>
-     <height>36</height>
+     <width>878</width>
+     <height>32</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
