@@ -62,13 +62,6 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="morePicBtn">
-            <property name="text">
-             <string>连拍</string>
-            </property>
-           </widget>
-          </item>
-          <item>
            <spacer name="horizontalSpacer_2">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -156,12 +149,6 @@
      <height>32</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuFile">
-    <property name="title">
-     <string>文件</string>
-    </property>
-    <addaction name="actionFileSavePath"/>
-   </widget>
    <widget class="QMenu" name="menumenu">
     <property name="title">
      <string>菜单</string>
@@ -169,7 +156,6 @@
     <addaction name="actionsetting"/>
     <addaction name="actionFrameSetting"/>
    </widget>
-   <addaction name="menuFile"/>
    <addaction name="menumenu"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">

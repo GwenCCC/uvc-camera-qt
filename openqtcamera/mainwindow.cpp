@@ -10,7 +10,6 @@
 #include <QTimer>
 #include <QThread>
 #include <QStandardPaths>
-#include "savepathdialog.h"
 #include "framesettingdialog.h"
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
                                           ui(new Ui::MainWindow)
@@ -190,12 +189,6 @@ void MainWindow::initConnect()
             {
             FrameSettingDialog dialog(m_graphicsVideoItem,m_mediaRecorder);
             dialog.exec(); });
-    connect(ui->actionFileSavePath, &QAction::triggered, this, [=]
-            {
-            savePathDialog dialog(m_picSavePath,m_movSavePath);
-            dialog.exec();
-            m_picSavePath=dialog.getpicSavePath();
-            m_movSavePath=dialog.getmovSavePath(); });
 
     connect(ui->tabWidget, &QTabWidget::tabBarClicked, this, [=](int index)
             {
@@ -254,8 +247,7 @@ void MainWindow::on_startBtn_clicked()
     QString path;
     if (m_movSavePath != nullptr)
     {
-        path = m_movSavePath + "/" +
-               QDateTime::currentDateTime().toString() + QString::number(QDateTime::currentMSecsSinceEpoch());
+        path = m_movSavePath + "/video";
     }
     else
     {
@@ -295,8 +287,7 @@ void MainWindow::on_picBtn_clicked()
         QString path;
         if (m_picSavePath != nullptr)
         {
-            path = m_picSavePath + "/" +
-                   QDateTime::currentDateTime().toString() + QString::number(QDateTime::currentMSecsSinceEpoch()) + ".png";
+            path = m_picSavePath + "/" + "capture.png";
         }
         else
         {
@@ -381,8 +372,6 @@ void MainWindow::on_CameraChooseCombox_activated(int index)
     //设置画面输出方式
     m_graphicsVideoItem->setAspectRatioMode(Qt::KeepAspectRatio);
 
-    m_picSavePath="tmp";
-    QString m_movSavePath=nullptr;
     //开启相机
     m_pCamera->start();
     
