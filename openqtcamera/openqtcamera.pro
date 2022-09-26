@@ -30,21 +30,18 @@ SOURCES += \
         mainwindow.cpp \
     settingdialog.cpp \
     framesettingdialog.cpp \
-    savepathdialog.cpp \
     setcameradialog.cpp
 
 HEADERS += \
         mainwindow.h \
     settingdialog.h \
     framesettingdialog.h \
-    savepathdialog.h \
     setcameradialog.h
 
 FORMS += \
         mainwindow.ui \
     settingdialog.ui \
     framesettingdialog.ui \
-    savepathdialog.ui \
     setcameradialog.ui
 
 # Default rules for deployment.
