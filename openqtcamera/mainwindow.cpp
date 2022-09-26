@@ -32,6 +32,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     initConnect();
     initTimer();
     setWindowTitle("相机");
+
+    m_picSavePath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+    m_movSavePath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
 }
 
 MainWindow::~MainWindow()
@@ -382,5 +385,9 @@ void MainWindow::on_CameraChooseCombox_activated(int index)
     QString m_movSavePath=nullptr;
     //开启相机
     m_pCamera->start();
+    
+    //设置存储路径
+    m_picSavePath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+    m_movSavePath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
 
 }
