@@ -1,16 +1,17 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "framesettingdialog.h"
+
 #include <QList>
 #include <QDebug>
 #include <QSize>
-#include "mainwindow.h"
 #include "settingdialog.h"
 #include <QDateTime>
 #include <QVideoProbe>
 #include <QTimer>
 #include <QThread>
 #include <QStandardPaths>
-#include "framesettingdialog.h"
+
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
                                           ui(new Ui::MainWindow)
 {

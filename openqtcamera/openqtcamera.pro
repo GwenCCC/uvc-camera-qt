@@ -29,20 +29,17 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     settingdialog.cpp \
-    framesettingdialog.cpp \
-    setcameradialog.cpp
+    framesettingdialog.cpp
 
 HEADERS += \
         mainwindow.h \
     settingdialog.h \
-    framesettingdialog.h \
-    setcameradialog.h
+    framesettingdialog.h
 
 FORMS += \
         mainwindow.ui \
     settingdialog.ui \
-    framesettingdialog.ui \
-    setcameradialog.ui
+    framesettingdialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
