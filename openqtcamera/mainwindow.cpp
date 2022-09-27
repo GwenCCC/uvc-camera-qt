@@ -301,21 +301,6 @@ void MainWindow::on_picBtn_clicked()
     ui->picBtn->setChecked(true);
 }
 
-void MainWindow::on_morePicBtn_clicked()
-{
-    qDebug("[%s] Start! \n", __FUNCTION__);
-    QThread *th1 = QThread::create([=]()
-                                   {
-        int index=5;
-        while(index>0)
-        {
-            on_picBtn_clicked();
-            QThread::sleep(1);
-            index--;
-        } });
-    connect(th1, &QThread::finished, th1, &QObject::deleteLater);
-    th1->start();
-}
 
 void MainWindow::ProcessVideoFrame(QVideoFrame frame)
 {

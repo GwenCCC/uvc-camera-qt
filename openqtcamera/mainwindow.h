@@ -47,10 +47,7 @@ private slots:
 
     void on_stopBtn_clicked();
 
-
     void on_picBtn_clicked();
-
-    void on_morePicBtn_clicked();
 
     void ProcessVideoFrame(QVideoFrame frame);
 
