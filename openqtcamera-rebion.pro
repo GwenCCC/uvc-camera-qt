@@ -1,3 +1,3 @@
 TEMPLATE = subdirs
 SUBDIRS += \
-        openqtcamera \
+        uvc-camera \

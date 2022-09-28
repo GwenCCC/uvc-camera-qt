@@ -11,8 +11,7 @@ Build-Depends: debhelper (>= 9),
                gst123,
                gstreamer1.0-pulseaudio,
                qtmultimedia5-dev,
-               gcc-multilib,
-               g++-multilib
+               libqt5multimedia5-plugins,
 
 Package: uvc-camera
 Architecture: amd64 arm64
