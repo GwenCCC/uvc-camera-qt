@@ -1,30 +1,28 @@
-openqtCamera
+### uvc-camera
 利用QMultimedia的技术实现的一个简单的摄像头程序
-2020/10/21第一次更新
 
-#### gihub
-https://github.com/dependon/openQtCamera
-#### （Contact author）
-send emails liuminghang0821@gmail.com或者liuminghang0821@qq.com（china））
-#### Linux build-dep（linux安装所需）
-sudo apt-get install libqt5multimedia5 libqt5multimediawidgets5
-#### Linux build（linux编译和安装）
-mkdir build
-cd build
-qmake ..
-make 
-make install
+------
 
-#### Linux
-* 报 va 相关错误  
-参考：https://bugreports.qt.io/browse/QTBUG-23761  
-解决：sudo apt-get remove gstreamer1.0-vaapi  
-感谢：liujianfeng@deepin.org
-* 不报错  
-    sudo apt-get install gst123  
-    下列【新】软件包将被安装：  
-    gst123 gstreamer1.0-pulseaudio gstreamer1.0-x  
+### 功能
+- 摄像头切换
 
-#### Windows
-* 安装 LAV Filters 解码解决。
+- 分辨率和帧率切换
+- 拍照
+- 录像
+
+------
+
+### 备注
+
+拍照后的照片存储在桌面，名称为1.jpg。
+
+只保存一张，新拍的照片会覆盖原本的照片。
+
+
+
+录像的视频也保存在桌面，名称为video，视频格式根据系统默认，可能是mov，ogg等。
+
+也是只保存一个，新的会覆盖旧的。
+
+ 
 
