@@ -12,6 +12,8 @@
 #include <QThread>
 #include <QStandardPaths>
 
+bool IsVideoRecording = false;
+
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
                                           ui(new Ui::MainWindow)
 {
@@ -35,6 +37,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
 
         m_picSavePath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
         m_movSavePath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+
+        ui->tabWidget->setCurrentIndex(0);
     }
     else{
         QMessageBox::critical(this, tr("拍摄程序"), tr("当前未检测到摄像头/高拍仪"));
@@ -194,24 +198,27 @@ void MainWindow::initConnect()
             {
             FrameSettingDialog dialog(m_graphicsVideoItem,m_mediaRecorder);
             dialog.exec(); });
-
+    //切换拍照和录像的函数
     connect(ui->tabWidget, &QTabWidget::tabBarClicked, this, [=](int index)
             {
-//        if(0==index)
-//        {
-//            m_pCamera->searchAndLock();
+       if(0==index)
+       {
+        ui->graphicsView_2->setVisible(true);
+        //    m_pCamera->searchAndLock();
 
-//            m_pCamera->setCaptureMode(QCamera::CaptureStillImage);
+        //    m_pCamera->setCaptureMode(QCamera::CaptureStillImage);
 
-//            m_pCamera->unlock();
-//        }
-//        else if(1==index){
-//            m_pCamera->searchAndLock();
+        //    m_pCamera->unlock();
+       }
+       else if(1==index){
+        ui->graphicsView_2->setVisible(false);
 
-//            m_pCamera->setCaptureMode(QCamera::CaptureVideo);
+        //    m_pCamera->searchAndLock();
 
-//            m_pCamera->unlock();
-//        }
+        //    m_pCamera->setCaptureMode(QCamera::CaptureVideo);
+
+        //    m_pCamera->unlock();
+       }
     });
 }
 
@@ -227,6 +234,7 @@ void MainWindow::showEvent(QShowEvent *event)
     resizeMovieWindow();
     return QMainWindow::showEvent(event);
 }
+//开始录像
 void MainWindow::on_startBtn_clicked()
 {
     qDebug("[%s] Start! \n", __FUNCTION__);
@@ -261,20 +269,23 @@ void MainWindow::on_startBtn_clicked()
     }
     m_mediaRecorder->setOutputLocation(QUrl(path));
     m_mediaRecorder->record();
+    IsVideoRecording = true;
 }
-
+//暂停录像
 void MainWindow::on_pauseBtn_clicked()
 {
     qDebug("[%s] Start! \n", __FUNCTION__);
     m_mediaRecorder->pause();
 }
-
+//停止录像
 void MainWindow::on_stopBtn_clicked()
 {
     qDebug("[%s] Start! \n", __FUNCTION__);
     m_mediaRecorder->stop();
+    IsVideoRecording = false;
+    QMessageBox::information(this, tr("拍摄程序"), tr("录像完成，已保存"));
 }
-
+//拍照
 void MainWindow::on_picBtn_clicked()
 {
     qDebug("[%s] Start! \n", __FUNCTION__);
@@ -302,6 +313,17 @@ void MainWindow::on_picBtn_clicked()
         qDebug("[%s] path = %s \n", __FUNCTION__,path);
 
         image.save(path);
+
+        /****************以下代码是将拍好的照片显示在graphicsView_2上*******************/
+        //创建显示容器
+        QGraphicsScene *scene = new QGraphicsScene;
+        scene->setBackgroundBrush(Qt::black);
+        //向容器中添加文件路径为fileName（QString类型）的文件
+        scene->addPixmap(QPixmap(path));
+        //借助graphicsView（QGraphicsView类）控件显示容器的内容
+        ui->graphicsView_2->setScene(scene);
+        //开始显示
+        ui->graphicsView_2->show();
     }
     ui->picBtn->setChecked(true);
 }
@@ -328,7 +350,7 @@ void MainWindow::checkDeviceListInfo()
     //        qDebug()<<info.orientation();
     //    }
 }
-
+//切换摄像头
 void MainWindow::on_CameraChooseCombox_activated(int index)
 {
     index = ui->CameraChooseCombox->currentIndex();
@@ -369,4 +391,17 @@ void MainWindow::on_CameraChooseCombox_activated(int index)
     m_picSavePath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
     m_movSavePath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
 
+}
+
+void MainWindow::on_closeBtn_clicked()
+{
+    QApplication::exit() ;
+}
+
+void MainWindow::on_closeBtn_2_clicked()
+{
+    if(IsVideoRecording == true)
+        QMessageBox::critical(this, tr("拍摄程序"), tr("当前录像未完成，无法退出"));
+    else
+        QApplication::exit() ;
 }

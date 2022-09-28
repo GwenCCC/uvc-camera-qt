@@ -57,6 +57,9 @@ private slots:
 
     void on_CameraChooseCombox_activated(int index);
 
+    void on_closeBtn_clicked();
+
+    void on_closeBtn_2_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -77,6 +80,7 @@ private:
 
     QCameraInfo m_currentInfo{nullptr};
     QList<QCameraInfo >m_InfoList;
+
 };
 
 #endif // MAINWINDOW_H
