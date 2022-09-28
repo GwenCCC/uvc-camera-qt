@@ -21,20 +21,24 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     //获取可用摄像头设备列表
     m_InfoList = QCameraInfo::availableCameras();
     int index = m_InfoList.size();
-    for (int i = 0; i < index; i++)
-    {
-        qDebug() << index << m_InfoList.at(i).description(); //摄像头的设备名称
-        ui->CameraChooseCombox->addItem(m_InfoList.at(i).description());
+    if(index > 0){
+        for (int i = 0; i < index; i++)
+        {
+            qDebug() << index << m_InfoList.at(i).description(); //摄像头的设备名称
+            ui->CameraChooseCombox->addItem(m_InfoList.at(i).description());
+        }
+        initSence();
+        initCamera(m_InfoList[0]);
+        initConnect();
+        initTimer();
+        setWindowTitle("相机");
+
+        m_picSavePath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+        m_movSavePath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
     }
-
-    initSence();
-    initCamera(m_InfoList[0]);
-    initConnect();
-    initTimer();
-    setWindowTitle("相机");
-
-    m_picSavePath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
-    m_movSavePath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+    else{
+        QMessageBox::critical(this, tr("拍摄程序"), tr("当前未检测到摄像头/高拍仪"));
+    }
 }
 
 MainWindow::~MainWindow()

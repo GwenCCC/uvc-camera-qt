@@ -14,6 +14,8 @@
 #include <QGraphicsScene>
 #include <QGraphicsView>
 
+#include <QMessageBox>
+
 #include <QTimer>
 
 namespace Ui {
