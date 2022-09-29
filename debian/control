@@ -1,5 +1,5 @@
 Source: uvc-camera
-Section: misc
+Section: x11
 Priority: optional
 Maintainer: wangjingwen <wangjingwen@kylinos.cn>
 Build-Depends: debhelper (>= 9),
