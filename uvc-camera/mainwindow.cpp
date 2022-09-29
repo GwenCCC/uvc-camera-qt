@@ -35,8 +35,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     initConnect();    
     setWindowTitle("相机");
 
-    m_picSavePath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
-    m_movSavePath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+    m_picSavePath = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
+    m_movSavePath = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
 
     ui->tabWidget->setCurrentIndex(0);
      

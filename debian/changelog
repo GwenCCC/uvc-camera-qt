@@ -1,3 +1,9 @@
+uvc-camera (1.0kord3) v100; urgency=low
+
+  * 默认保存路径修改到用户家目录下，更新运行依赖
+
+ -- wangjingwen <wangjingwen@kylinos.cn>  Thu, 29 Sep 2022 10:44:39 +0800
+
 uvc-camera (1.0kord2) v100; urgency=low
 
   * 修复没有摄像头崩溃的问题
