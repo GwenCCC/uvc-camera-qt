@@ -20,29 +20,27 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     qDebug("[%s] Start! \n", __FUNCTION__);
     ui->setupUi(this);
 
-    //获取可用摄像头设备列表
+    //获取可用摄像头设备列表 
+    //因为main函数里面已经判断了当前存在摄像头，所以这里不用判断摄像头个数了
     m_InfoList = QCameraInfo::availableCameras();
     int index = m_InfoList.size();
-    if(index > 0){
-        for (int i = 0; i < index; i++)
-        {
-            qDebug() << index << m_InfoList.at(i).description(); //摄像头的设备名称
-            ui->CameraChooseCombox->addItem(m_InfoList.at(i).description());
-        }
-        initSence();
-        initCamera(m_InfoList[0]);
-        initConnect();
-        initTimer();
-        setWindowTitle("相机");
-
-        m_picSavePath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
-        m_movSavePath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
-
-        ui->tabWidget->setCurrentIndex(0);
+    
+    for (int i = 0; i < index; i++)
+    {
+        qDebug() << index << m_InfoList.at(i).description(); //摄像头的设备名称
+        ui->CameraChooseCombox->addItem(m_InfoList.at(i).description());
     }
-    else{
-        QMessageBox::critical(this, tr("拍摄程序"), tr("当前未检测到摄像头/高拍仪"));
-    }
+    initSence();
+    initCamera(m_InfoList[0]);
+    initConnect();    
+    setWindowTitle("相机");
+
+    m_picSavePath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+    m_movSavePath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+
+    ui->tabWidget->setCurrentIndex(0);
+     
+ 
 }
 
 MainWindow::~MainWindow()
@@ -154,16 +152,6 @@ void MainWindow::initCamera(QCameraInfo cameraInfo)
             { qDebug() << status; });
 }
 
-void MainWindow::initTimer()
-{
-    qDebug("[%s] Start! \n", __FUNCTION__);
-    if (!m_timer)
-    {
-        m_timer = new QTimer(this);
-        connect(m_timer, &QTimer::timeout, this, &MainWindow::checkDeviceListInfo);
-        m_timer->start(1000);
-    }
-}
 void MainWindow::resizeMovieWindow()
 {
     qDebug("[%s] Start! \n", __FUNCTION__);
@@ -334,22 +322,7 @@ void MainWindow::ProcessVideoFrame(QVideoFrame frame)
     qDebug("[%s] Start! \n", __FUNCTION__);
     qDebug() << 111111;
 }
-//这个函数上赋了定时器 每秒都执行
-void MainWindow::checkDeviceListInfo()
-{
-    // qDebug("[%s] Start! \n", __FUNCTION__);
-    QList<QCameraInfo> curCameraInfoList = QCameraInfo::availableCameras();
-    if (m_InfoList.count() != curCameraInfoList.count())
-    {
-        qDebug("[%s] m_InfoList.count() = %d! \n", __FUNCTION__, m_InfoList.count());
-        qDebug("[%s] curCameraInfoList.count() = %d! \n", __FUNCTION__, curCameraInfoList.count());
-    }
-    //    for (QCameraInfo info :QCameraInfo::availableCameras()) {
-    //        qDebug()<<info.deviceName();
-    //        qDebug()<<info.description();
-    //        qDebug()<<info.orientation();
-    //    }
-}
+
 //切换摄像头
 void MainWindow::on_CameraChooseCombox_activated(int index)
 {

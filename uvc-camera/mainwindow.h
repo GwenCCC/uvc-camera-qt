@@ -32,7 +32,6 @@ public:
 
     void initSence();
     void initCamera(QCameraInfo cameraInfo);
-    void initTimer();
     void initConnect();
     void resizeMovieWindow();
 
@@ -52,8 +51,6 @@ private slots:
     void on_picBtn_clicked();
 
     void ProcessVideoFrame(QVideoFrame frame);
-
-    void checkDeviceListInfo();
 
     void on_CameraChooseCombox_activated(int index);
 
