@@ -52,6 +52,8 @@ private slots:
 
     void ProcessVideoFrame(QVideoFrame frame);
 
+    void DelOldFile();
+
     void on_CameraChooseCombox_activated(int index);
 
     void on_closeBtn_clicked();

@@ -39,8 +39,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     m_movSavePath = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
 
     ui->tabWidget->setCurrentIndex(0);
-     
- 
+
+    DelOldFile();
+
+    //录像功能gf项目不需要，因此隐藏掉了
+    ui->tabWidget->setTabEnabled(1, false);
+    ui->tabWidget->setStyleSheet("QTabBar::tab:disabled {width: 0; color: transparent;}");
 }
 
 MainWindow::~MainWindow()
@@ -178,10 +182,12 @@ bool MainWindow::isFile(const QString &path)
 void MainWindow::initConnect()
 {
     qDebug("[%s] Start! \n", __FUNCTION__);
+    //解码设置页面
     connect(ui->actionsetting, &QAction::triggered, this, [=]
             {
             settingDialog dialog(m_mediaRecorder);
             dialog.exec(); });
+    // 画面设置页面
     connect(ui->actionFrameSetting, &QAction::triggered, this, [=]
             {
             FrameSettingDialog dialog(m_graphicsVideoItem,m_mediaRecorder);
@@ -321,6 +327,35 @@ void MainWindow::ProcessVideoFrame(QVideoFrame frame)
 {
     qDebug("[%s] Start! \n", __FUNCTION__);
     qDebug() << 111111;
+}
+
+void MainWindow::DelOldFile()
+{
+    //删除上一次保存的照片
+    QFileInfo photo(m_picSavePath + "/" + "capture.png");
+    if (photo.isFile())//如果是文件
+        QFile::remove(photo.absoluteFilePath());
+
+    //删除上一次保存的录像 这种方法有问题，可能会删错
+    QDir dir(m_movSavePath);   //QDir的路径一定要是全路径，相对路径会有错误
+
+    //取到所有的文件和文件名，去掉.和..文件夹
+    dir.setFilter(QDir::Dirs | QDir::Files | QDir::NoDotAndDotDot);
+    dir.setSorting(QDir::DirsFirst);
+    //将其转化为一个list
+    QFileInfoList list = dir.entryInfoList();
+    if(list.size()<1)
+        return;
+    int i = 0;
+    //采用递归算法
+    do {
+        QFileInfo fileInfo = list.at(i);
+        QString filename_without_suffix = fileInfo.baseName();
+        if(filename_without_suffix == QString::fromLocal8Bit("video"))
+            QFile::remove(fileInfo.absoluteFilePath());
+        ++i;
+    }while(i<list.size());
+
 }
 
 //切换摄像头
