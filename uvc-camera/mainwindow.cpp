@@ -361,8 +361,8 @@ void MainWindow::on_CameraChooseCombox_activated(int index)
     m_pCamera->start();
     
     //设置存储路径
-    m_picSavePath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
-    m_movSavePath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+    m_picSavePath = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
+    m_movSavePath = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
 
 }
 

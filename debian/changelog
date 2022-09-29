@@ -1,4 +1,4 @@
-uvc-camera (1.0kord3) v100; urgency=low
+uvc-camera (1.0kord4) v100; urgency=low
 
   * 默认保存路径修改到用户家目录下，更新运行依赖
 
