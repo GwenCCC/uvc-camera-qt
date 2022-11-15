@@ -1,5 +1,11 @@
 uvc-camera (1.0kord5) v100; urgency=low
 
+  * 显示录像标签页
+
+ -- wangjingwen <wangjingwen@kylinos.cn>  Tue, 15 Nov 2022 10:00:51 +0800
+
+uvc-camera (1.0kord5) v100; urgency=low
+
   * 删除上次保存的文件，隐藏录像标签页
 
  -- wangjingwen <wangjingwen@kylinos.cn>  Thu, 29 Sep 2022 17:33:44 +0800

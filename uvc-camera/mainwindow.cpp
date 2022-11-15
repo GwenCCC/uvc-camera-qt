@@ -41,10 +41,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     ui->tabWidget->setCurrentIndex(0);
 
     DelOldFile();
-
-    //录像功能gf项目不需要，因此隐藏掉了
-    ui->tabWidget->setTabEnabled(1, false);
-    ui->tabWidget->setStyleSheet("QTabBar::tab:disabled {width: 0; color: transparent;}");
+//    这两条是隐藏录像页面的
+//    ui->tabWidget->setTabEnabled(1, false);
+//    ui->tabWidget->setStyleSheet("QTabBar::tab:disabled {width: 0; color: transparent;}");
 }
 
 MainWindow::~MainWindow()
