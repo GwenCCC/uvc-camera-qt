@@ -1,5 +1,5 @@
 ### uvc-camera
-利用QMultimedia的技术实现的一个简单的摄像头程序
+利用QMultimedia的技术实现的一个简单的摄像头程序  
 
 ------
 
