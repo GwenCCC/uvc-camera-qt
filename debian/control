@@ -1,7 +1,7 @@
 Source: uvc-camera
 Section: x11
 Priority: optional
-Maintainer: wangjingwen <wangjingwen@kylinos.cn>
+Maintainer: GwenCCC <gwen@limxdynamics.com>
 Build-Depends: debhelper (>= 9),
                qtbase5-dev,
                qt5-default,

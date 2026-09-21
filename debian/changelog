@@ -2,28 +2,28 @@ uvc-camera (1.0kord6) v100; urgency=low
 
   * 显示录像标签页
 
- -- wangjingwen <wangjingwen@kylinos.cn>  Tue, 15 Nov 2022 10:00:51 +0800
+ -- GwenCCC <gwen@limxdynamics.com>  Tue, 15 Nov 2022 10:00:51 +0800
 
 uvc-camera (1.0kord5) v100; urgency=low
 
   * 删除上次保存的文件，隐藏录像标签页
 
- -- wangjingwen <wangjingwen@kylinos.cn>  Thu, 29 Sep 2022 17:33:44 +0800
+ -- GwenCCC <gwen@limxdynamics.com>  Thu, 29 Sep 2022 17:33:44 +0800
 
 uvc-camera (1.0kord4) v100; urgency=low
 
   * 默认保存路径修改到用户家目录下，更新运行依赖
 
- -- wangjingwen <wangjingwen@kylinos.cn>  Thu, 29 Sep 2022 10:44:39 +0800
+ -- GwenCCC <gwen@limxdynamics.com>  Thu, 29 Sep 2022 10:44:39 +0800
 
 uvc-camera (1.0kord2) v100; urgency=low
 
   * 修复没有摄像头崩溃的问题
 
- -- wangjingwen <wangjingwen@kylinos.cn>  Wed, 28 Sep 2022 17:47:00 +0800
+ -- GwenCCC <gwen@limxdynamics.com>  Wed, 28 Sep 2022 17:47:00 +0800
 
 uvc-camera (1.0kord1) v100; urgency=low
 
   * Initial release 
 
- -- wangjingwen <wangjingwen@kylinos.cn>  Fri, 23 Sep 2022 16:03:42 +0800
+ -- GwenCCC <gwen@limxdynamics.com>  Fri, 23 Sep 2022 16:03:42 +0800
