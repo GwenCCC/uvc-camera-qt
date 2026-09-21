@@ -1,28 +1,25 @@
-### uvc-camera
-利用QMultimedia的技术实现的一个简单的摄像头程序  
+# uvc-camera (Qt) — moved
 
-------
+> **This repository has been merged into [GwenCCC/uvc-camera](https://github.com/GwenCCC/uvc-camera).**
+>
+> The full commit history and every file you see here are preserved, but the project now lives in one place as the `qt/` implementation:
+>
+> **→ https://github.com/GwenCCC/uvc-camera/tree/main/qt**
+>
+> The sibling `python/` directory of that repository holds the lighter Python + OpenCV version of the same camera viewer. Head over there for the current README, build steps and issues.
 
-### 功能
-- 摄像头切换
+---
 
-- 分辨率和帧率切换
-- 拍照
-- 录像
+# uvc-camera（Qt 版）— 已迁移
 
-------
+> **本仓已并入 [GwenCCC/uvc-camera](https://github.com/GwenCCC/uvc-camera)，代码位于其中的 `qt/` 目录。**
+>
+> 这里保留全部提交历史，但后续维护统一在新仓进行：
+>
+> **→ https://github.com/GwenCCC/uvc-camera/tree/main/qt**
+>
+> 新仓的 `python/` 目录是同一功能的 Python + OpenCV 轻量版。
 
-### 备注
+## License
 
-拍照后的照片存储在用户家目录下，名称为capture.png。
-
-只保存一张，新拍的照片会覆盖原本的照片。
-
-
-
-录像的视频也保存在用户家目录下，名称为video，视频格式根据系统默认，可能是mov，ogg等。
-
-也是只保存一个，新的会覆盖旧的。
-
- 
-
+MIT — see [LICENSE](LICENSE).
